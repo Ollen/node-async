@@ -1,0 +1,13 @@
+{
+  "name": "node-async",
+  "version": "1.0.0",
+  "description": "Asynchronous NodeJS operations",
+  "main": "app.js",
+  "author": "Allendale S. Nato",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "lodash": "^4.17.4",
+    "request": "^2.81.0"
+  }
+}
