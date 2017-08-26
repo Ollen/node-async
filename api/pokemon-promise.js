@@ -10,8 +10,7 @@ const getPokemon = name => {
         axios.get(apiURL, {responseType: 'json'})
             .then(res => {
                 let data = _.pick(res.data, ['name', 'id', 'height', 'weight']);
-                let stringify = JSON.stringify(data, null, 4);
-                resolve(stringify);            
+                resolve(data);          
             }, err => {
                 if (err.response.status == 404) {
                     reject('Pokemon not found.');
@@ -23,6 +22,24 @@ const getPokemon = name => {
     });
 };
 
+const getPokemonShape = id => {
+    let apiURL = `${baseUrl}/pokemon-species/${id}`;    
+
+    return new Promise((resolve, reject) => {
+        axios.get(apiURL, {responseType: 'json'})
+            .then(res => {
+                resolve(`Pokemon shape: ${res.data.shape.name}`);
+            }, err => {
+                if (err.response.status == 404) {
+                    reject('Pokemon not found.');
+                } else {
+                    reject(`${err.response.status} ${err.response.statusText}`);
+                }
+            });
+    });
+};
+
 module.exports = {
-    getPokemon
+    getPokemon,
+    getPokemonShape
 };
