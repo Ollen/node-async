@@ -13,13 +13,30 @@ const getPokemon = async (name) => {
         return res;
     } catch (err) {
         if (err.response.status == 404) {
-            return 'Pokemon not found.';
+            return Promise.reject('Pokemon not Found') // Alternatively, you can throw an Error e.g.(return throw new Error('...'));
         } else {
-            return `${err.response.status} ${err.response.statusText}`;
+            return Promise.reject(`${err.response.status} ${err.response.statusText}`);  // Alternatively, you can throw an Error e.g.(return throw new Error('...'));
         }
     }
 }
 
+const getPokemonShape = async (id) => {
+    let apiURL = `${baseUrl}/pokemon-species/${id}`; 
+    
+    try {
+        let res = await axios.get(apiURL, {responseType: 'json'});
+        return `Pokemon shape: ${res.data.shape.name}`;
+    } catch (err) {
+        if (err.response.status == 404) {
+            return Promise.reject('Pokemon not Found')  // Alternatively, you can throw an Error e.g.(return throw new Error('...'));
+        } else {
+            return Promise.reject(`${err.response.status} ${err.response.statusText}`);  // Alternatively, you can throw an Error e.g.(return throw new Error('...'));
+        }
+    }
+
+};
+
 module.exports = {
-    getPokemon
+    getPokemon,
+    getPokemonShape
 }
