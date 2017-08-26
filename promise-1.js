@@ -1,15 +1,8 @@
 const pokemon = require('./api/pokemon-promise');
-const _ = require('lodash');
 
-pokemon.getPokemon('Snivyd')
+pokemon.getPokemon('Raichu')
     .then(res => {
-        let data = _.pick(res.data, ['name', 'id', 'height', 'weight']);
-        let stringify = JSON.stringify(data, null, 4);
-        console.log(stringify);            
+        console.log(res);            
     }, err => {
-        if (err.response.status == 404) {
-            console.log('Pokemon not found.');
-        } else {
-            console.log(`${err.response.status} ${err.response.statusText}`);
-        }
+        console.log(err);
     });
