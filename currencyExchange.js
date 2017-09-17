@@ -47,7 +47,7 @@ const convertCurrency_await = async (from, to, amount) => {
     return (`${amount} ${from} is worth ${exchangedAmount} ${to}.\n${to} can be used in the following countries ${countries.join(', ')}`);
 };
 
-convertCurrency_await('PPP', 'PHP', 100).then(res=> {
+convertCurrency_await('USD', 'CAD', 100).then(res=> {
     console.log(res);
 }).catch(err => {
     console.log(err.message);
